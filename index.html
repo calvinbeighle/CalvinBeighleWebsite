@@ -14,8 +14,8 @@
             overscroll-behavior: none;
         }
         .image-container {
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
@@ -39,10 +39,6 @@
             max-height: 100%;
             object-fit: contain;
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
         #content {
             height: 525vh; /* Increased to 3x the original length */
@@ -67,15 +63,7 @@
 <body>
     <div class="image-container">
         <div class="image-wrapper">
-            <img src="LibertyLeadingThePeople.png" 
-                 srcset="LibertyLeadingThePeople-small.png 480w,
-                         LibertyLeadingThePeople-medium.png 800w,
-                         LibertyLeadingThePeople.png 1200w"
-                 sizes="(max-width: 600px) 480px,
-                        (max-width: 1000px) 800px,
-                        1200px"
-                 alt="Liberty Leading The People" 
-                 id="liberty-image">
+            <img src="LibertyLeadingThePeople.png" alt="Liberty Leading The People" id="liberty-image">
             <img src="Stanczyk.png" alt="Stanczyk" id="stanczyk-image">
             <img src="blueman.png" alt="Blue Man" id="blueman-image">
         </div>
@@ -84,37 +72,47 @@
     <div id="content"></div>
     <script>
         function setInitialState() {
-            document.getElementById('liberty-image').style.opacity = '1';
-            document.getElementById('stanczyk-image').style.opacity = '0';
-            document.getElementById('blueman-image').style.opacity = '0';
-            document.getElementById('call-link').style.opacity = '0';
+            var libertyImage = document.getElementById('liberty-image');
+            var stanczykImage = document.getElementById('stanczyk-image');
+            var bluemanImage = document.getElementById('blueman-image');
+            var callLink = document.getElementById('call-link');
+            
+            libertyImage.style.display = 'block';
+            stanczykImage.style.display = 'none';
+            bluemanImage.style.display = 'none';
+            callLink.style.display = 'none';
         }
 
+        // Call setInitialState when the page loads
         window.addEventListener('load', setInitialState);
 
         window.addEventListener('scroll', function() {
             var scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            var libertyImage = document.getElementById('liberty-image');
+            var stanczykImage = document.getElementById('stanczyk-image');
+            var bluemanImage = document.getElementById('blueman-image');
+            var callLink = document.getElementById('call-link');
             
             if (scrollPercentage < 30) {
-                document.getElementById('liberty-image').style.opacity = '1';
-                document.getElementById('stanczyk-image').style.opacity = '0';
-                document.getElementById('blueman-image').style.opacity = '0';
-                document.getElementById('call-link').style.opacity = '0';
+                libertyImage.style.display = 'block';
+                stanczykImage.style.display = 'none';
+                bluemanImage.style.display = 'none';
+                callLink.style.display = 'none';
             } else if (scrollPercentage >= 30 && scrollPercentage < 60) {
-                document.getElementById('liberty-image').style.opacity = '0';
-                document.getElementById('stanczyk-image').style.opacity = '1';
-                document.getElementById('blueman-image').style.opacity = '0';
-                document.getElementById('call-link').style.opacity = '0';
+                libertyImage.style.display = 'none';
+                stanczykImage.style.display = 'block';
+                bluemanImage.style.display = 'none';
+                callLink.style.display = 'none';
             } else if (scrollPercentage >= 60 && scrollPercentage < 90) {
-                document.getElementById('liberty-image').style.opacity = '0';
-                document.getElementById('stanczyk-image').style.opacity = '0';
-                document.getElementById('blueman-image').style.opacity = '1';
-                document.getElementById('call-link').style.opacity = '0';
+                libertyImage.style.display = 'none';
+                stanczykImage.style.display = 'none';
+                bluemanImage.style.display = 'block';
+                callLink.style.display = 'none';
             } else {
-                document.getElementById('liberty-image').style.opacity = '0';
-                document.getElementById('stanczyk-image').style.opacity = '0';
-                document.getElementById('blueman-image').style.opacity = '0';
-                document.getElementById('call-link').style.opacity = '1';
+                libertyImage.style.display = 'none';
+                stanczykImage.style.display = 'none';
+                bluemanImage.style.display = 'none';
+                callLink.style.display = 'block';
             }
         });
     </script>
