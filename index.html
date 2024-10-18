@@ -71,6 +71,21 @@
     </div>
     <div id="content"></div>
     <script>
+        function setInitialState() {
+            var libertyImage = document.getElementById('liberty-image');
+            var stanczykImage = document.getElementById('stanczyk-image');
+            var bluemanImage = document.getElementById('blueman-image');
+            var callLink = document.getElementById('call-link');
+            
+            libertyImage.style.display = 'block';
+            stanczykImage.style.display = 'none';
+            bluemanImage.style.display = 'none';
+            callLink.style.display = 'none';
+        }
+
+        // Call setInitialState when the page loads
+        window.addEventListener('load', setInitialState);
+
         window.addEventListener('scroll', function() {
             var scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             var libertyImage = document.getElementById('liberty-image');
