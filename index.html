@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CALVIN ANGUS BEIGHLE</title>
-    <link rel="icon" href="c.jpg" type="image/jpeg">
+    <link rel="icon" href="c.png" type="image/png">
     <style>
         body, html {
             margin: 0;
@@ -14,17 +14,20 @@
             overscroll-behavior: none;
         }
         .image-container {
+            width: 100%;
+            height: 100%;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            pointer-events: none; /* Prevents interfering with scroll */
         }
         .image-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
             display: flex;
@@ -36,10 +39,15 @@
             max-height: 100%;
             object-fit: contain;
             display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         #content {
-            height: 400vh; /* Lengthened to allow more scrolling */
-            background: transparent;
+            height: 525vh; /* Increased to 3x the original length */
+            position: relative;
+            z-index: -1;
         }
         .call-link {
             position: fixed;
@@ -66,18 +74,7 @@
         <a href="tel:+14062036674" rel="noopener noreferrer" class="call-link" id="call-link">CALL</a>
     </div>
     <div id="content"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Prevent drag behavior on all images
-        $('img').on('dragstart', function(event) { 
-            event.preventDefault(); 
-        });
-
-        // Set initial state when the page loads
-        window.addEventListener('load', function() {
-            document.getElementById('liberty-image').style.display = 'block';
-        });
-
         window.addEventListener('scroll', function() {
             var scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             var libertyImage = document.getElementById('liberty-image');
