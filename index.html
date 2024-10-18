@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Background with Disappearing Square Image</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: black;
+            overscroll-behavior: none;
+        }
+        .image-container {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        #content {
+            height: 300vh; /* Triple the website length */
+            position: relative;
+            z-index: -1;
+        }
+        .call-link {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.9rem;
+            color: white;
+            letter-spacing: 0.75px;
+            font-family: 'Helvetica', 'Helvetica', sans-serif;
+            font-weight: 400; 
+            text-decoration: none; /* Changed this line */
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="LibertyLeadingThePeople.png" alt="Square Image" id="disappearing-image">
+        <a href="tel:+14062036674" rel="noopener noreferrer" class="call-link" id="call-link">CALL</a>
+    </div>
+    <div id="content"></div>
+    <script>
+        window.addEventListener('scroll', function() {
+            var scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            var image = document.getElementById('disappearing-image');
+            var callLink = document.getElementById('call-link');
+            
+            if (scrollPercentage <= 75) {
+                image.style.opacity = 1 - (scrollPercentage / 75);
+            } else {
+                image.style.opacity = 0;
+            }
+
+            if (scrollPercentage <= 80) {
+                callLink.style.opacity = scrollPercentage / 80;
+            } else {
+                callLink.style.opacity = 1;
+            }
+        });
+    </script>
+</body>
+</html>
