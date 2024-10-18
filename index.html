@@ -14,20 +14,17 @@
             overscroll-behavior: none;
         }
         .image-container {
-            width: 100vw;
-            height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            pointer-events: none; /* Prevents interfering with scroll */
         }
         .image-wrapper {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
             display: flex;
@@ -41,9 +38,8 @@
             display: none;
         }
         #content {
-            height: 525vh; /* Increased to 3x the original length */
-            position: relative;
-            z-index: -1;
+            height: 400vh; /* Lengthened to allow more scrolling */
+            background: transparent;
         }
         .call-link {
             position: fixed;
