@@ -22,6 +22,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column; /* Stack content vertically */
         }
         img {
             max-width: 100%;
@@ -48,13 +49,6 @@
         }
         .call-link.active {
             display: block;
-        }
-        /* Media query to adjust blueman image on mobile */
-        @media (max-width: 768px) {
-            #blueman-image {
-                width: 50%; /* Adjust percentage as desired */
-                height: auto;
-            }
         }
     </style>
 </head>
